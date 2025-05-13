@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ru.yandex.practicum.telemetry.collector.dto.hub.HubEvent;
 import ru.yandex.practicum.telemetry.collector.dto.sensor.SensorEvent;
 
 @RestController("/events")
@@ -18,7 +19,7 @@ public class Controller {
 
     @PostMapping("/hubs")
     @ResponseStatus(HttpStatus.OK)
-    public void collectHubEvent() {
+    public void collectHubEvent(@Valid @RequestBody HubEvent event) {
 
     }
 }

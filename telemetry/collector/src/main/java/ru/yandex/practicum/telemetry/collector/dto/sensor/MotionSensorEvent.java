@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import ru.yandex.practicum.telemetry.collector.model.sensor.SensorEventType;
 
 @Getter
 @Setter
@@ -25,7 +24,7 @@ public class MotionSensorEvent extends SensorEvent {
     final Integer voltage;
 
     @Override
-    public SensorEventType getType() {
-        return SensorEventType.MOTION_SENSOR_EVENT;
+    public SwitchSensorEvent.SensorEventType getType() {
+        return SwitchSensorEvent.SensorEventType.MOTION_SENSOR_EVENT;
     }
 }

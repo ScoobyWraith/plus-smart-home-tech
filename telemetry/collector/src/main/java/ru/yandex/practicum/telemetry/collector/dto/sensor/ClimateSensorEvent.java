@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
-import ru.yandex.practicum.telemetry.collector.model.sensor.SensorEventType;
 
 @Getter
 @Setter
@@ -25,7 +24,7 @@ public class ClimateSensorEvent extends SensorEvent {
     final Integer co2Level;
 
     @Override
-    public SensorEventType getType() {
-        return SensorEventType.CLIMATE_SENSOR_EVENT;
+    public SwitchSensorEvent.SensorEventType getType() {
+        return SwitchSensorEvent.SensorEventType.CLIMATE_SENSOR_EVENT;
     }
 }

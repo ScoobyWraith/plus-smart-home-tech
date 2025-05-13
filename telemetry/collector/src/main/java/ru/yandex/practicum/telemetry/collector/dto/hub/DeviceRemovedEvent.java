@@ -1,5 +1,6 @@
-package ru.yandex.practicum.telemetry.collector.dto.sensor;
+package ru.yandex.practicum.telemetry.collector.dto.hub;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +13,12 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LightSensorEvent extends SensorEvent {
-    final Integer linkQuality;
-    final Integer luminosity;
+public class DeviceRemovedEvent extends HubEvent {
+    @NotBlank
+    final String id;
 
     @Override
-    public SwitchSensorEvent.SensorEventType getType() {
-        return SwitchSensorEvent.SensorEventType.LIGHT_SENSOR_EVENT;
+    public HubEventType getType() {
+        return HubEventType.DEVICE_REMOVED;
     }
 }
