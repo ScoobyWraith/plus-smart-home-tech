@@ -1,4 +1,4 @@
-package ru.yandex.practicum.telemetry.collector.dto.hub.action;
+package ru.yandex.practicum.telemetry.collector.model.hub.condition;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -12,8 +12,9 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DeviceAction {
+public class ScenarioCondition {
     final String sensorId;
-    final DeviceActionType type;
-    final int value;
+    final ScenarioConditionType type;
+    final ScenarioConditionOperation operation;
+    final Integer value;
 }

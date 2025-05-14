@@ -1,7 +1,6 @@
-package ru.yandex.practicum.telemetry.collector.dto.sensor;
+package ru.yandex.practicum.telemetry.collector.model.sensor;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,15 +8,14 @@ import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LightSensorEvent extends SensorEvent {
-    final Integer linkQuality;
-    final Integer luminosity;
+    Integer linkQuality;
+    Integer luminosity;
 
     @Override
-    public SwitchSensorEvent.SensorEventType getType() {
-        return SwitchSensorEvent.SensorEventType.LIGHT_SENSOR_EVENT;
+    public SensorEventType getType() {
+        return SensorEventType.LIGHT_SENSOR_EVENT;
     }
 }

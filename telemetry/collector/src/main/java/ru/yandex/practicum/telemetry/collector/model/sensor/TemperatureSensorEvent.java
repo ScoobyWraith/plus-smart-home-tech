@@ -1,8 +1,7 @@
-package ru.yandex.practicum.telemetry.collector.dto.sensor;
+package ru.yandex.practicum.telemetry.collector.model.sensor;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,18 +9,17 @@ import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TemperatureSensorEvent extends SensorEvent {
     @NotNull
-    final Integer temperatureC;
+    Integer temperatureC;
 
     @NotNull
-    final Integer temperatureF;
+    Integer temperatureF;
 
     @Override
-    public SwitchSensorEvent.SensorEventType getType() {
-        return SwitchSensorEvent.SensorEventType.TEMPERATURE_SENSOR_EVENT;
+    public SensorEventType getType() {
+        return SensorEventType.TEMPERATURE_SENSOR_EVENT;
     }
 }

@@ -1,4 +1,4 @@
-package ru.yandex.practicum.telemetry.collector.dto.sensor;
+package ru.yandex.practicum.telemetry.collector.model.sensor;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -36,5 +36,13 @@ public abstract class SensorEvent {
     private Instant timestamp = Instant.now();
 
     @NotNull
-    public abstract SwitchSensorEvent.SensorEventType getType();
+    public abstract SensorEventType getType();
+
+    public enum SensorEventType {
+        MOTION_SENSOR_EVENT,
+        TEMPERATURE_SENSOR_EVENT,
+        LIGHT_SENSOR_EVENT,
+        CLIMATE_SENSOR_EVENT,
+        SWITCH_SENSOR_EVENT
+    }
 }

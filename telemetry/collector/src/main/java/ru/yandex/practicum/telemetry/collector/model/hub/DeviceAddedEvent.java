@@ -1,24 +1,27 @@
-package ru.yandex.practicum.telemetry.collector.dto.hub;
+package ru.yandex.practicum.telemetry.collector.model.hub;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
+import ru.yandex.practicum.telemetry.collector.model.sensor.DeviceType;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @ToString(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DeviceRemovedEvent extends HubEvent {
+public class DeviceAddedEvent extends HubEvent {
     @NotBlank
-    final String id;
+    String id;
+
+    @NotNull
+    DeviceType deviceType;
 
     @Override
     public HubEventType getType() {
-        return HubEventType.DEVICE_REMOVED;
+        return HubEventType.DEVICE_ADDED;
     }
 }

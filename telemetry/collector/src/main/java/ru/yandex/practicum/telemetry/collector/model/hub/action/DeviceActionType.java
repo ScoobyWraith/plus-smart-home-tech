@@ -1,4 +1,4 @@
-package ru.yandex.practicum.telemetry.collector.dto.hub.action;
+package ru.yandex.practicum.telemetry.collector.model.hub.action;
 
 public enum DeviceActionType {
     ACTIVATE,

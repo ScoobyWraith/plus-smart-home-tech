@@ -1,4 +1,4 @@
-package ru.yandex.practicum.telemetry.collector.dto.hub.condition;
+package ru.yandex.practicum.telemetry.collector.model.hub.condition;
 
 public enum ScenarioConditionOperation {
     EQUALS,
