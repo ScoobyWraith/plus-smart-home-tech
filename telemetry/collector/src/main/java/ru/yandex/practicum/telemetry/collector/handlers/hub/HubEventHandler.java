@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
-import ru.yandex.practicum.telemetry.collector.kafka.Topics;
 import ru.yandex.practicum.telemetry.collector.model.hub.HubEvent;
 
 @Getter
@@ -15,7 +14,6 @@ import ru.yandex.practicum.telemetry.collector.model.hub.HubEvent;
 @AllArgsConstructor
 public abstract class HubEventHandler <T extends HubEvent> {
     private final KafkaClient kafkaClient;
-    private final String topic = Topics.TELEMETRY_HUBS_V_1;
 
     public void handle(T event) {
         Object eventPayload = getPayload(event);
@@ -25,7 +23,7 @@ public abstract class HubEventHandler <T extends HubEvent> {
                 .setPayload(eventPayload)
                 .build();
 
-        kafkaClient.sendData(event.getHubId(), payload, topic);
+        kafkaClient.sendData(event.getHubId(), payload, kafkaClient.getTelemetryHubsV1Topic());
     }
 
     public abstract HubEvent.HubEventType getEventType();

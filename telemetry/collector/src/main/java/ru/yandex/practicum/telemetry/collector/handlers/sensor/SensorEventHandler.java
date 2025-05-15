@@ -4,14 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.ToString;
 import ru.yandex.practicum.kafka.telemetry.event.SensorEventAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
-import ru.yandex.practicum.telemetry.collector.kafka.Topics;
 import ru.yandex.practicum.telemetry.collector.model.sensor.SensorEvent;
 
 @ToString
 @AllArgsConstructor
 public abstract class SensorEventHandler<T extends SensorEvent> {
     private final KafkaClient kafkaClient;
-    private final String topic = Topics.TELEMETRY_SENSORS_V_1;
 
     public void handle(T event) {
         Object eventPayload = getPayload(event);
@@ -22,7 +20,7 @@ public abstract class SensorEventHandler<T extends SensorEvent> {
                 .setPayload(eventPayload)
                 .build();
 
-        kafkaClient.sendData(event.getHubId(), payload, topic);
+        kafkaClient.sendData(event.getHubId(), payload, kafkaClient.getTelemetrySensorsV1Topic());
     }
 
     public abstract SensorEvent.SensorEventType getEventType();
