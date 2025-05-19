@@ -7,8 +7,10 @@ import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.yandex.practicum.grpc.telemetry.collector.CollectorControllerGrpc.CollectorControllerImplBase;
+import ru.yandex.practicum.grpc.telemetry.event.HubEventProto;
 import ru.yandex.practicum.grpc.telemetry.event.SensorEventProto;
-import ru.yandex.practicum.telemetry.collector.grpc.handlers.sensor.SensorEventHandler;
+import ru.yandex.practicum.telemetry.collector.grpc.handlers.hub.GRPCHubEventHandler;
+import ru.yandex.practicum.telemetry.collector.grpc.handlers.sensor.GRPCSensorEventHandler;
 
 import java.util.Map;
 import java.util.Set;
@@ -17,13 +19,20 @@ import java.util.stream.Collectors;
 
 @GrpcService
 public class EventCollector extends CollectorControllerImplBase {
-    private final Map<SensorEventProto.PayloadCase, SensorEventHandler> sensorEventHandlers;
+    private final Map<SensorEventProto.PayloadCase, GRPCSensorEventHandler> sensorEventHandlers;
+    private final Map<HubEventProto.PayloadCase, GRPCHubEventHandler> hubEventHandlers;
+
 
     @Autowired
-    public EventCollector(Set<SensorEventHandler> sensorEventHandlers) {
+    public EventCollector(Set<GRPCSensorEventHandler> sensorEventHandlers, Set<GRPCHubEventHandler> hubEventHandlers) {
         this.sensorEventHandlers = sensorEventHandlers.stream()
                 .collect(Collectors.toMap(
-                        SensorEventHandler::getMessageType,
+                        GRPCSensorEventHandler::getMessageType,
+                        Function.identity()
+                ));
+        this.hubEventHandlers = hubEventHandlers.stream()
+                .collect(Collectors.toMap(
+                        GRPCHubEventHandler::getMessageType,
                         Function.identity()
                 ));
     }

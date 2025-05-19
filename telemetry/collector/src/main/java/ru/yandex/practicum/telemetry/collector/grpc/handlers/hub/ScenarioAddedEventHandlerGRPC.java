@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.function.Function;
 
 @Component
-public class ScenarioAddedEventHandler extends HubEventHandler {
+public class ScenarioAddedEventHandlerGRPC extends GRPCHubEventHandler {
     @Autowired
-    public ScenarioAddedEventHandler(KafkaClient kafkaClient) {
+    public ScenarioAddedEventHandlerGRPC(KafkaClient kafkaClient) {
         super(kafkaClient);
     }
 

@@ -8,7 +8,7 @@ import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
 import java.time.Instant;
 
 @AllArgsConstructor
-public abstract class SensorEventHandler {
+public abstract class GRPCSensorEventHandler {
     private final KafkaClient kafkaClient;
 
     public abstract SensorEventProto.PayloadCase getMessageType();

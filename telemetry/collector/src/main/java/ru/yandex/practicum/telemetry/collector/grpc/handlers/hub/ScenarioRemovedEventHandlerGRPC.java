@@ -8,9 +8,9 @@ import ru.yandex.practicum.kafka.telemetry.event.ScenarioRemovedEventAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
 
 @Component
-public class ScenarioRemovedEventHandler extends HubEventHandler {
+public class ScenarioRemovedEventHandlerGRPC extends GRPCHubEventHandler {
     @Autowired
-    public ScenarioRemovedEventHandler(KafkaClient kafkaClient) {
+    public ScenarioRemovedEventHandlerGRPC(KafkaClient kafkaClient) {
         super(kafkaClient);
     }
 

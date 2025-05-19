@@ -2,30 +2,29 @@ package ru.yandex.practicum.telemetry.collector.grpc.handlers.sensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.yandex.practicum.grpc.telemetry.event.MotionSensorProto;
+import ru.yandex.practicum.grpc.telemetry.event.LightSensorProto;
 import ru.yandex.practicum.grpc.telemetry.event.SensorEventProto;
-import ru.yandex.practicum.kafka.telemetry.event.MotionSensorAvro;
+import ru.yandex.practicum.kafka.telemetry.event.LightSensorAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
 
 @Component
-public class MotionSensorEventHandler extends SensorEventHandler {
+public class LightGRPCSensorEventHandler extends GRPCSensorEventHandler {
     @Autowired
-    public MotionSensorEventHandler(KafkaClient kafkaClient) {
+    public LightGRPCSensorEventHandler(KafkaClient kafkaClient) {
         super(kafkaClient);
     }
 
     @Override
     public SensorEventProto.PayloadCase getMessageType() {
-        return SensorEventProto.PayloadCase.MOTION_SENSOR_EVENT;
+        return SensorEventProto.PayloadCase.LIGHT_SENSOR_EVENT;
     }
 
     @Override
     protected Object getPayload(SensorEventProto event) {
-        final MotionSensorProto payload = event.getMotionSensorEvent();
-        return MotionSensorAvro.newBuilder()
-                .setMotion(payload.getMotion())
+        final LightSensorProto payload = event.getLightSensorEvent();
+        return LightSensorAvro.newBuilder()
+                .setLuminosity(payload.getLuminosity())
                 .setLinkQuality(payload.getLinkQuality())
-                .setVoltage(payload.getVoltage())
                 .build();
     }
 }

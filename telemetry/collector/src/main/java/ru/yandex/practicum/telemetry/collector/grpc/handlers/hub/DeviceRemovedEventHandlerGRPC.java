@@ -8,9 +8,9 @@ import ru.yandex.practicum.kafka.telemetry.event.DeviceRemovedEventAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
 
 @Component
-public class DeviceRemovedEventHandler extends HubEventHandler {
+public class DeviceRemovedEventHandlerGRPC extends GRPCHubEventHandler {
     @Autowired
-    public DeviceRemovedEventHandler(KafkaClient kafkaClient) {
+    public DeviceRemovedEventHandlerGRPC(KafkaClient kafkaClient) {
         super(kafkaClient);
     }
 

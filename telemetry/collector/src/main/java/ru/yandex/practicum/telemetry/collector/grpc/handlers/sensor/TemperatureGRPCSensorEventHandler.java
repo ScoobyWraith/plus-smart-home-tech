@@ -8,9 +8,9 @@ import ru.yandex.practicum.kafka.telemetry.event.TemperatureSensorAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
 
 @Component
-public class TemperatureSensorEventHandler extends SensorEventHandler {
+public class TemperatureGRPCSensorEventHandler extends GRPCSensorEventHandler {
     @Autowired
-    public TemperatureSensorEventHandler(KafkaClient kafkaClient) {
+    public TemperatureGRPCSensorEventHandler(KafkaClient kafkaClient) {
         super(kafkaClient);
     }
 

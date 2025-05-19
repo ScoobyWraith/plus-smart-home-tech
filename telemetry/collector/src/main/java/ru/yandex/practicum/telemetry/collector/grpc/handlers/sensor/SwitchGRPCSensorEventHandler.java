@@ -8,9 +8,9 @@ import ru.yandex.practicum.kafka.telemetry.event.SwitchSensorAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
 
 @Component
-public class SwitchSensorEventHandler extends SensorEventHandler {
+public class SwitchGRPCSensorEventHandler extends GRPCSensorEventHandler {
     @Autowired
-    public SwitchSensorEventHandler(KafkaClient kafkaClient) {
+    public SwitchGRPCSensorEventHandler(KafkaClient kafkaClient) {
         super(kafkaClient);
     }
 
