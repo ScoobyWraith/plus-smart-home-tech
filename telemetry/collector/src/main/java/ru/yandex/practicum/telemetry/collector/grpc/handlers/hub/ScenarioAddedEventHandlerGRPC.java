@@ -14,7 +14,6 @@ import ru.yandex.practicum.kafka.telemetry.event.ScenarioConditionAvro;
 import ru.yandex.practicum.telemetry.collector.kafka.KafkaClient;
 
 import java.util.List;
-import java.util.function.Function;
 
 @Component
 public class ScenarioAddedEventHandlerGRPC extends GRPCHubEventHandler {
@@ -39,19 +38,12 @@ public class ScenarioAddedEventHandlerGRPC extends GRPCHubEventHandler {
                         .build())
                 .toList();
 
-        final Function<ScenarioConditionProto, Object> valueGetter
-                = (conditionProto) -> switch (conditionProto.getValueCase()) {
-            case INT_VALUE -> conditionProto.getIntValue();
-            case BOOL_VALUE -> conditionProto.getBoolValue();
-            default -> null;
-        };
-
         List<ScenarioConditionAvro> conditions = payload.getConditionList().stream()
                 .map(condition -> ScenarioConditionAvro.newBuilder()
                         .setSensorId(condition.getSensorId())
                         .setType(ConditionTypeAvro.valueOf(condition.getType().name()))
                         .setOperation(ConditionOperationAvro.valueOf(condition.getOperation().name()))
-                        .setValue(valueGetter)
+                        .setValue(getConditionValue(condition))
                         .build())
                 .toList();
 
@@ -60,5 +52,13 @@ public class ScenarioAddedEventHandlerGRPC extends GRPCHubEventHandler {
                 .setActions(actions)
                 .setConditions(conditions)
                 .build();
+    }
+
+    private Object getConditionValue(ScenarioConditionProto condition) {
+        return switch (condition.getValueCase()) {
+            case BOOL_VALUE -> condition.getBoolValue();
+            case INT_VALUE -> condition.getIntValue();
+            default -> null;
+        };
     }
 }
