@@ -5,9 +5,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.io.Serializable;
 
+@Getter
 @Embeddable
 @EqualsAndHashCode
 @AllArgsConstructor

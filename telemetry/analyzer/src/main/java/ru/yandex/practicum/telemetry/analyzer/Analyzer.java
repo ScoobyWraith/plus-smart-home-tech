@@ -3,8 +3,8 @@ package ru.yandex.practicum.telemetry.analyzer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import ru.yandex.practicum.telemetry.analyzer.service.SnapshotProcessor;
 import ru.yandex.practicum.telemetry.analyzer.service.hub.HubEventProcessor;
+import ru.yandex.practicum.telemetry.analyzer.service.snapshots.SnapshotProcessor;
 
 @SpringBootApplication
 public class Analyzer {

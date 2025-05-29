@@ -84,7 +84,7 @@ public class HubEventProcessor implements Runnable {
 
     private KafkaConsumer<String, HubEventAvro> createConsumer() {
         Properties config = new Properties();
-        config.put(ConsumerConfig.CLIENT_ID_CONFIG, "aggregator-consumer");
+        config.put(ConsumerConfig.CLIENT_ID_CONFIG, consumerGroup);
         config.put(ConsumerConfig.GROUP_ID_CONFIG, consumerGroup);
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());

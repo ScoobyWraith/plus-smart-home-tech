@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ru.yandex.practicum.telemetry.analyzer.model.ScenarioCondition;
 import ru.yandex.practicum.telemetry.analyzer.model.ScenarioConditionsPK;
 
-public interface ScenarioConditionsRepository extends JpaRepository<ScenarioCondition, ScenarioConditionsPK> {
+import java.util.List;
 
+public interface ScenarioConditionsRepository extends JpaRepository<ScenarioCondition, ScenarioConditionsPK> {
+    List<ScenarioCondition> findAllByPkScenarioId(Long scenarioId);
 }
