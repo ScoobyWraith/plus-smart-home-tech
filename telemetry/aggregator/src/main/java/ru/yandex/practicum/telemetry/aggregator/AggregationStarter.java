@@ -99,6 +99,7 @@ public class AggregationStarter {
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaServer);
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, SensorEventDeserializer.class.getName());
+        config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         return new KafkaConsumer<>(config);
     }
 
