@@ -6,11 +6,15 @@ import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 
 @Getter
+@Setter
 @Embeddable
+@NoArgsConstructor
 @EqualsAndHashCode
 @AllArgsConstructor
 public class ScenarioActionsPK implements Serializable {

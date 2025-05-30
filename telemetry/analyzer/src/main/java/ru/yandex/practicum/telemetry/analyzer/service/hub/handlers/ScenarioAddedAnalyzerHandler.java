@@ -21,6 +21,8 @@ import ru.yandex.practicum.telemetry.analyzer.repository.ScenarioConditionsRepos
 import ru.yandex.practicum.telemetry.analyzer.repository.ScenarioRepository;
 import ru.yandex.practicum.telemetry.analyzer.repository.SensorRepository;
 
+import java.util.Optional;
+
 @Component
 @RequiredArgsConstructor
 public class ScenarioAddedAnalyzerHandler implements AnalyzerHubEventHandler {
@@ -37,6 +39,12 @@ public class ScenarioAddedAnalyzerHandler implements AnalyzerHubEventHandler {
     public void handle(HubEventAvro hubEvent) {
         String hubId = hubEvent.getHubId();
         ScenarioAddedEventAvro eventAvro = (ScenarioAddedEventAvro) hubEvent.getPayload();
+
+        Optional<Scenario> scenarioOptional = scenarioRepository.findByHubIdAndName(hubId, eventAvro.getName());
+
+        if (scenarioOptional.isPresent()) {
+            return;
+        }
 
         Scenario scenario = Scenario.builder()
                 .hubId(hubId)

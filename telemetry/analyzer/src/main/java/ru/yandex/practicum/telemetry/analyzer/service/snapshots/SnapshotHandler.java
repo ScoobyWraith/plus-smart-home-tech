@@ -43,12 +43,18 @@ public class SnapshotHandler {
     public void handle(SensorsSnapshotAvro snapshotAvro) {
         prepareCheckers();
 
+        log.debug("Пришел снапшот {}", snapshotAvro);
+
         String hubId = snapshotAvro.getHubId();
         List<Scenario> scenarios = scenarioRepository.findByHubId(hubId);
+
+        log.debug("Сценарии для хаба {}", scenarios);
 
         for (Scenario scenario : scenarios) {
             List<ScenarioCondition> scenarioConditions
                     = scenarioConditionsRepository.findAllByPkScenarioId(scenario.getId());
+
+            log.debug("Сценарий {} имеет условия {}", scenario, scenarioConditions);
 
             if (isConditionsPassed(scenarioConditions, snapshotAvro)) {
                 List<ScenarioAction> scenarioActions
@@ -78,11 +84,15 @@ public class SnapshotHandler {
                 return false;
             }
 
+            log.debug("Условие {} будет проверять {}", condition, state);
+
             if (!checker.check(condition, state)) {
+                log.debug("Условие не выполнено");
                 return false;
             }
         }
 
+        log.debug("Все условия выполнены");
         return true;
     }
 
