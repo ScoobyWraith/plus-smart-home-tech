@@ -41,4 +41,12 @@ logging:
       transaction: WARN
       transaction.interceptor: WARN
     org.hibernate:
-      SQL: DEBUG
+      SQL: WARN
+    ru:
+      yandex:
+        practicum:
+          telemetry:
+            analyzer: DEBUG
+
+server:
+  port: 8081

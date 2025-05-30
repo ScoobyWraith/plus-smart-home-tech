@@ -71,8 +71,10 @@ public class SnapshotHandler {
             SensorStateAvro state = snapshotAvro.getSensorsState().get(sensorId);
 
             if (state == null) {
-                throw new RuntimeException(String.format("Сенсор с ИД %s не найден", sensorId));
+                log.error("Сенсор с ИД {} не найден", sensorId);
+                return false;
             }
+
             Long conditionId = scenarioCondition.getPk().getCondition().getId();
             Condition condition = conditionRepository.findById(conditionId)
                     .orElseThrow(() -> new RuntimeException(String.format("Условие с ИД %d не найдено", conditionId)));

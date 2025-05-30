@@ -1,6 +1,7 @@
 package ru.yandex.practicum.telemetry.analyzer.service.hub.handlers;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.kafka.telemetry.event.DeviceActionAvro;
 import ru.yandex.practicum.kafka.telemetry.event.HubEventAvro;
@@ -23,6 +24,7 @@ import ru.yandex.practicum.telemetry.analyzer.repository.SensorRepository;
 
 import java.util.Optional;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class ScenarioAddedAnalyzerHandler implements AnalyzerHubEventHandler {
@@ -39,12 +41,13 @@ public class ScenarioAddedAnalyzerHandler implements AnalyzerHubEventHandler {
     public void handle(HubEventAvro hubEvent) {
         String hubId = hubEvent.getHubId();
         ScenarioAddedEventAvro eventAvro = (ScenarioAddedEventAvro) hubEvent.getPayload();
-
         Optional<Scenario> scenarioOptional = scenarioRepository.findByHubIdAndName(hubId, eventAvro.getName());
 
         if (scenarioOptional.isPresent()) {
             return;
         }
+
+        log.debug("Сохранение сценария из ивента {}", hubEvent);
 
         Scenario scenario = Scenario.builder()
                 .hubId(hubId)
@@ -53,7 +56,11 @@ public class ScenarioAddedAnalyzerHandler implements AnalyzerHubEventHandler {
 
         scenario = scenarioRepository.save(scenario);
 
+        log.debug("Сценарий {} сохранен", scenario);
+
         for (ScenarioConditionAvro conditionAvro : eventAvro.getConditions()) {
+            log.debug("Условие {}", conditionAvro);
+
             Integer value = conditionAvro.getValue() instanceof Boolean booleanValue
                     ? (booleanValue ? 1 : 0)
                     : (Integer) conditionAvro.getValue();
@@ -68,12 +75,18 @@ public class ScenarioAddedAnalyzerHandler implements AnalyzerHubEventHandler {
                     .value(value)
                     .build());
 
-            scenarioConditionsRepository.save(new ScenarioCondition(
+            log.debug("Условие {} сохранено", condition);
+
+            ScenarioCondition scenarioCondition = scenarioConditionsRepository.save(new ScenarioCondition(
                     new ScenarioConditionsPK(scenario, sensor, condition)
             ));
+
+            log.debug("Связь сценарий-условие сохранена {}", scenarioCondition.getPk());
         }
 
         for (DeviceActionAvro actionAvro : eventAvro.getActions()) {
+            log.debug("Действие {}", actionAvro);
+
             Sensor sensor = sensorRepository.findByIdAndHubId(actionAvro.getSensorId(), hubId)
                     .orElseThrow(() -> new RuntimeException(String.format(
                             "Сенсор с ИД %s не найден в хабе %s", actionAvro.getSensorId(), hubId
@@ -83,9 +96,13 @@ public class ScenarioAddedAnalyzerHandler implements AnalyzerHubEventHandler {
                             .value(actionAvro.getValue())
                     .build());
 
-            scenarioActionsRepository.save(new ScenarioAction(
+            log.debug("Действие {} сохранено", actionAvro);
+
+            ScenarioAction scenarioAction = scenarioActionsRepository.save(new ScenarioAction(
                     new ScenarioActionsPK(scenario, sensor, action)
             ));
+
+            log.debug("Связь сценарий-действие сохранено {}", scenarioAction.getPk());
         }
     }
 

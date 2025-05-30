@@ -55,6 +55,8 @@ public class HubEventProcessor implements Runnable {
                 for (ConsumerRecord<String, HubEventAvro> record : records) {
                     HubEventAvro hubEvent = record.value();
 
+                    log.debug("Обработка события хаба {}", hubEvent);
+
                     try {
                         Class<?> paycloadClass = hubEvent.getPayload().getClass();
                         AnalyzerHubEventHandler hubEventHandler
@@ -65,6 +67,7 @@ public class HubEventProcessor implements Runnable {
                             continue;
                         }
 
+                        log.debug("Обработка класса {}", paycloadClass);
                         hubEventHandler.handle(hubEvent);
                     } catch (Exception e) {
                         log.error("Ошибка обработки HubEvent: {}", e.getMessage(), e);

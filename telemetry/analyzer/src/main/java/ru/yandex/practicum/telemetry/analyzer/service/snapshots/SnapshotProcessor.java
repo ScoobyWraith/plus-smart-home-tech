@@ -85,7 +85,7 @@ public class SnapshotProcessor {
         if (count % COMMIT_EVERY_RECORDS == 0) {
             consumer.commitAsync(currentOffsets, (offsets, exception) -> {
                 if(exception != null) {
-                    log.warn("Ошибка во время фиксации оффсетов: {}", offsets, exception);
+                    log.debug("Ошибка во время фиксации оффсетов: {}", offsets, exception);
                 }
             });
         }
