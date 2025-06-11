@@ -1,9 +1,7 @@
 package ru.yandex.practicum.interaction_api.exception;
 
-import org.springframework.http.HttpStatus;
-
 public class NotAuthorizedUserException extends BaseHttpException {
-    public NotAuthorizedUserException(String message, HttpStatus httpStatus) {
+    public NotAuthorizedUserException(String message, String httpStatus) {
         super(message, httpStatus);
     }
 }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -16,5 +18,5 @@ public class Pageable {
     @Min(1)
     Integer size;
 
-    String sort;
+    List<String> sort;
 }

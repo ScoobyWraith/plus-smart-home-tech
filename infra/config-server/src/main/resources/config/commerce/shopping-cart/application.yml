@@ -1,9 +1,12 @@
 spring:
   main.banner-mode: OFF
   jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
     hibernate:
       ddl-auto: update
-      format_sql: true
       jdbc.time_zone: UTC
   sql:
     init:
@@ -24,6 +27,17 @@ logging:
       transaction.interceptor: WARN
     org.hibernate:
       SQL: WARN
+      type.descriptor.sql.BasicBinder: WARN
+      orm.jdbc:
+        bind: WARN
+        core.JdbcTemplate: WARN
+        core.StatementCreatorUtils: WARN
     ru:
       yandex:
         practicum: DEBUG
+
+api:
+  path: "/api/v1"
+
+server:
+  port: 0
