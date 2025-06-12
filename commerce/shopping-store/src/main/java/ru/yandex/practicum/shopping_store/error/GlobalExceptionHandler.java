@@ -14,10 +14,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ProductNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public BaseHttpException handleProductNotFoundException(final ProductNotFoundException e) {
-        log.warn("500 {}", e.getMessage(), e);
+        log.warn("404 {}", e.getMessage(), e);
         return e;
     }
-
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

@@ -15,12 +15,13 @@ import ru.yandex.practicum.interaction_api.dto.warehouse.AddProductToWarehouseRe
 import ru.yandex.practicum.interaction_api.dto.warehouse.AddressDto;
 import ru.yandex.practicum.interaction_api.dto.warehouse.BookedProductsDto;
 import ru.yandex.practicum.interaction_api.dto.warehouse.NewProductInWarehouseRequest;
+import ru.yandex.practicum.interaction_api.interaction.WarehouseClient;
 import ru.yandex.practicum.warehouse.service.WarehouseService;
 
 @RestController
 @RequestMapping("${api.path}/warehouse")
 @RequiredArgsConstructor
-public class Controller {
+public class Controller implements WarehouseClient {
     private final WarehouseService service;
 
     @PutMapping
