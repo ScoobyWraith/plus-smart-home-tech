@@ -1,11 +1,11 @@
 package ru.yandex.practicum.interaction_api.interaction;
 
-import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import ru.yandex.practicum.interaction_api.dto.product.ProductCategory;
 import ru.yandex.practicum.interaction_api.dto.product.ProductDto;
 import ru.yandex.practicum.interaction_api.dto.product.SetProductQuantityStateRequest;
