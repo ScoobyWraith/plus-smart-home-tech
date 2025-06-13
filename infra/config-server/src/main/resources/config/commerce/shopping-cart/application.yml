@@ -1,5 +1,7 @@
 spring:
-  main.banner-mode: OFF
+  main:
+    banner-mode: OFF
+    allow-bean-definition-overriding: true
   jpa:
     show-sql: false
     properties:
