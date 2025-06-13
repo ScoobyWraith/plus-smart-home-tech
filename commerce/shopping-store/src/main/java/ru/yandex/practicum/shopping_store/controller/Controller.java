@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.interaction_api.dto.product.ProductCategory;
 import ru.yandex.practicum.interaction_api.dto.product.ProductDto;
 import ru.yandex.practicum.interaction_api.dto.product.SetProductQuantityStateRequest;
+import ru.yandex.practicum.interaction_api.interaction.ShoppingStoreClient;
 import ru.yandex.practicum.shopping_store.service.ShoppingStoreService;
 
 @RestController
 @RequestMapping("${api.path}/shopping-store")
 @RequiredArgsConstructor
-public class Controller {
+public class Controller implements ShoppingStoreClient {
     private final ShoppingStoreService service;
 
     @GetMapping

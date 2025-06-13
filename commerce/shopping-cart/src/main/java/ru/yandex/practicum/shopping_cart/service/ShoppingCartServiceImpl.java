@@ -9,7 +9,7 @@ import ru.yandex.practicum.interaction_api.dto.shopping_cart.ShoppingCartDto;
 import ru.yandex.practicum.interaction_api.exception.NoProductsInShoppingCartException;
 import ru.yandex.practicum.interaction_api.exception.NotAuthorizedUserException;
 import ru.yandex.practicum.interaction_api.exception.ProductInShoppingCartLowQuantityInWarehouse;
-import ru.yandex.practicum.shopping_cart.client.WarehouseClient;
+import ru.yandex.practicum.interaction_api.interaction.WarehouseClient;
 import ru.yandex.practicum.shopping_cart.mapper.ShoppingCartMapper;
 import ru.yandex.practicum.shopping_cart.model.ShoppingCart;
 import ru.yandex.practicum.shopping_cart.storage.ShoppingCartRepository;

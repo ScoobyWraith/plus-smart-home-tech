@@ -14,7 +14,7 @@ spring:
 
   datasource:
     driverClassName: "org.postgresql.Driver"
-    url: "jdbc:postgresql://localhost:5432/commerce"
+    url: "jdbc:postgresql://localhost:5432/warehouse"
     username: "service"
     password: "service"
 
