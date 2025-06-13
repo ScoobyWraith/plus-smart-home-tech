@@ -34,10 +34,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>ru.yandex.practicum.infra.discovery_service.DiscoveryServer</mainClass>
-                    <layout>JAR</layout>
-                </configuration>
             </plugin>
         </plugins>
     </build>
