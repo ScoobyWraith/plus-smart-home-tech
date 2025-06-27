@@ -8,10 +8,12 @@ import ru.yandex.practicum.interaction_api.dto.order.CreateNewOrderRequest;
 import ru.yandex.practicum.interaction_api.dto.order.OrderDto;
 import ru.yandex.practicum.interaction_api.dto.order.ProductReturnRequest;
 
+import java.util.List;
+
 @FeignClient(name = "order")
 public interface OrderClient {
     @GetMapping("/api/v1/order")
-    OrderDto getOrders(String username);
+    List<OrderDto> getOrders(String username);
 
     @PutMapping("/api/v1/order")
     OrderDto createOrder(CreateNewOrderRequest request);

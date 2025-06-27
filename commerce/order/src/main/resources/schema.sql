@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS orders (
     order_id VARCHAR(36) NOT NULL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
     shopping_cart_id VARCHAR(36),
     payment_id VARCHAR(36),
     delivery_id VARCHAR(36),

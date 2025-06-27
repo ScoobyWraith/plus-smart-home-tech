@@ -6,8 +6,10 @@ import org.springframework.stereotype.Service;
 import ru.yandex.practicum.interaction_api.dto.shopping_cart.ShoppingCartDto;
 import ru.yandex.practicum.interaction_api.dto.warehouse.AddProductToWarehouseRequest;
 import ru.yandex.practicum.interaction_api.dto.warehouse.AddressDto;
+import ru.yandex.practicum.interaction_api.dto.warehouse.AssemblyProductsForOrderRequest;
 import ru.yandex.practicum.interaction_api.dto.warehouse.BookedProductsDto;
 import ru.yandex.practicum.interaction_api.dto.warehouse.NewProductInWarehouseRequest;
+import ru.yandex.practicum.interaction_api.dto.warehouse.ShippedToDeliveryRequest;
 import ru.yandex.practicum.interaction_api.exception.NoSpecifiedProductInWarehouseException;
 import ru.yandex.practicum.interaction_api.exception.ProductInShoppingCartLowQuantityInWarehouse;
 import ru.yandex.practicum.interaction_api.exception.SpecifiedProductAlreadyInWarehouseException;
@@ -78,5 +80,20 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public AddressDto getShoppingCart() {
         return new AddressDto(CURRENT_ADDRESS, CURRENT_ADDRESS, CURRENT_ADDRESS, CURRENT_ADDRESS, CURRENT_ADDRESS);
+    }
+
+    @Override
+    public void shipped(ShippedToDeliveryRequest request) {
+
+    }
+
+    @Override
+    public void returnProducts(Map<String, Long> products) {
+
+    }
+
+    @Override
+    public BookedProductsDto assembly(AssemblyProductsForOrderRequest request) {
+        return null;
     }
 }

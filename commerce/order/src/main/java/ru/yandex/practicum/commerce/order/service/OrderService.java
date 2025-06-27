@@ -4,8 +4,10 @@ import ru.yandex.practicum.interaction_api.dto.order.CreateNewOrderRequest;
 import ru.yandex.practicum.interaction_api.dto.order.OrderDto;
 import ru.yandex.practicum.interaction_api.dto.order.ProductReturnRequest;
 
+import java.util.List;
+
 public interface OrderService {
-    OrderDto getOrders(String username);
+    List<OrderDto> getOrders(String username);
 
     OrderDto createOrder(CreateNewOrderRequest request);
 

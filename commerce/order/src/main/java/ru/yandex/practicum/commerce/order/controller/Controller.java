@@ -2,10 +2,13 @@ package ru.yandex.practicum.commerce.order.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.commerce.order.service.OrderService;
@@ -13,6 +16,8 @@ import ru.yandex.practicum.interaction_api.dto.order.CreateNewOrderRequest;
 import ru.yandex.practicum.interaction_api.dto.order.OrderDto;
 import ru.yandex.practicum.interaction_api.dto.order.ProductReturnRequest;
 import ru.yandex.practicum.interaction_api.interaction.OrderClient;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("${api.path}/order")
@@ -22,13 +27,13 @@ public class Controller implements OrderClient {
     
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public OrderDto getOrders(String username) {
+    public List<OrderDto> getOrders(@RequestParam String username) {
         return service.getOrders(username);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public OrderDto createOrder(CreateNewOrderRequest request) {
+    public OrderDto createOrder(@Validated @RequestBody CreateNewOrderRequest request) {
         return service.createOrder(request);
     }
 

@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.interaction_api.dto.shopping_cart.ShoppingCartDto;
 import ru.yandex.practicum.interaction_api.dto.warehouse.AddProductToWarehouseRequest;
 import ru.yandex.practicum.interaction_api.dto.warehouse.AddressDto;
+import ru.yandex.practicum.interaction_api.dto.warehouse.AssemblyProductsForOrderRequest;
 import ru.yandex.practicum.interaction_api.dto.warehouse.BookedProductsDto;
 import ru.yandex.practicum.interaction_api.dto.warehouse.NewProductInWarehouseRequest;
+import ru.yandex.practicum.interaction_api.dto.warehouse.ShippedToDeliveryRequest;
 import ru.yandex.practicum.interaction_api.interaction.WarehouseClient;
 import ru.yandex.practicum.warehouse.service.WarehouseService;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("${api.path}/warehouse")
@@ -34,6 +38,24 @@ public class Controller implements WarehouseClient {
     @ResponseStatus(HttpStatus.OK)
     public BookedProductsDto checkQuantity(@Valid @RequestBody ShoppingCartDto shoppingCartDto) {
         return service.checkQuantity(shoppingCartDto);
+    }
+
+    @PostMapping("/shipped")
+    @ResponseStatus(HttpStatus.OK)
+    public void shipped(ShippedToDeliveryRequest request) {
+
+    }
+
+    @PostMapping("/return")
+    @ResponseStatus(HttpStatus.OK)
+    public void returnProducts(Map<String, Long> products) {
+
+    }
+
+    @PostMapping("/assembly")
+    @ResponseStatus(HttpStatus.OK)
+    public BookedProductsDto assembly(AssemblyProductsForOrderRequest request) {
+
     }
 
     @PostMapping("/add")

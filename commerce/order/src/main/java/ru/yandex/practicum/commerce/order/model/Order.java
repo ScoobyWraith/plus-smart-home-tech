@@ -38,6 +38,9 @@ public class Order {
     @Column(name = "order_id")
     String orderId;
 
+    @Column(name = "username")
+    String username;
+
     @Column(name = "shopping_cart_id")
     String shoppingCartId;
 
