@@ -24,16 +24,7 @@ spring:
       retry:
         useRandomPolicy: true
         max-interval: 6000
-    gateway:
-      discovery.locator:
-        enabled: true
-    routes:
-      - id: shopping_cart
-        uri: lb://shopping-cart
-        predicates:
-          - Path=/shopping-cart/**
-        filters:
-          - PrefixPath=/api/v1
+
 eureka:
   client:
     serviceUrl:
