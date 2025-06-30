@@ -43,19 +43,19 @@ public class Controller implements WarehouseClient {
     @PostMapping("/shipped")
     @ResponseStatus(HttpStatus.OK)
     public void shipped(ShippedToDeliveryRequest request) {
-
+        service.shipped(request);
     }
 
     @PostMapping("/return")
     @ResponseStatus(HttpStatus.OK)
     public void returnProducts(Map<String, Long> products) {
-
+        service.returnProducts(products);
     }
 
     @PostMapping("/assembly")
     @ResponseStatus(HttpStatus.OK)
     public BookedProductsDto assembly(AssemblyProductsForOrderRequest request) {
-
+        return service.assembly(request);
     }
 
     @PostMapping("/add")
