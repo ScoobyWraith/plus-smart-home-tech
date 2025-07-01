@@ -18,7 +18,6 @@ import ru.yandex.practicum.interaction_api.dto.warehouse.AddressDto;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeliveryDto {
-    @NotBlank
     String deliveryId;
 
     @NotNull
@@ -31,5 +30,6 @@ public class DeliveryDto {
     String orderId;
 
     @NotNull
-    DeliveryState deliveryState;
+    @Builder.Default
+    DeliveryState deliveryState = DeliveryState.CREATED;
 }

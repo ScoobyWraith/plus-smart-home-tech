@@ -26,14 +26,20 @@ public class Controller implements DeliveryClient {
 
     @PostMapping("/successful")
     @ResponseStatus(HttpStatus.OK)
-    public void successfulDelivery(String paymentId) {
-        deliveryService.successfulDelivery(paymentId);
+    public void successfulDelivery(String deliveryId) {
+        deliveryService.successfulDelivery(deliveryId);
     }
 
     @PostMapping("/picked")
     @ResponseStatus(HttpStatus.OK)
-    public void pickedDelivery(String paymentId) {
-        deliveryService.pickedDelivery(paymentId);
+    public void pickedDelivery(String deliveryId) {
+        deliveryService.pickedDelivery(deliveryId);
+    }
+
+    @PostMapping("/failed")
+    @ResponseStatus(HttpStatus.OK)
+    public void failedDelivery(String deliveryId) {
+        deliveryService.failedDelivery(deliveryId);
     }
 
     @PostMapping("/cost")

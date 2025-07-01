@@ -66,7 +66,7 @@ public class Controller implements WarehouseClient {
 
     @GetMapping("/address")
     @ResponseStatus(HttpStatus.OK)
-    public AddressDto getShoppingCart() {
-        return service.getShoppingCart();
+    public AddressDto getAddress() {
+        return service.getAddress();
     }
 }

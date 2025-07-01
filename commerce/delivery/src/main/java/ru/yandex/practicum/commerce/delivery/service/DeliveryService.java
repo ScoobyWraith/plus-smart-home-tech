@@ -6,9 +6,11 @@ import ru.yandex.practicum.interaction_api.dto.order.OrderDto;
 public interface DeliveryService {
     DeliveryDto createDelivery(DeliveryDto deliveryDto);
 
-    void successfulDelivery(String paymentId);
+    void successfulDelivery(String deliveryId);
 
-    void pickedDelivery(String paymentId);
+    void pickedDelivery(String deliveryId);
+
+    void failedDelivery(String deliveryId);
 
     Double calculateCost(OrderDto orderDto);
 }

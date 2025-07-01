@@ -37,11 +37,11 @@ public class Delivery {
     @Column(name = "to_address_id", nullable = false)
     Address toAddress;
 
-
     @Column(name = "order_id", nullable = false)
     String orderId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "delivery_state", nullable = false)
-    DeliveryState deliveryState;
+    @Builder.Default
+    DeliveryState deliveryState = DeliveryState.CREATED;
 }

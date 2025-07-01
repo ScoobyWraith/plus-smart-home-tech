@@ -52,7 +52,8 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state", nullable = false)
-    OrderState state;
+    @Builder.Default
+    OrderState state = OrderState.NEW;
 
     @Column(name = "delivery_weight")
     Double deliveryWeight;

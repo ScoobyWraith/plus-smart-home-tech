@@ -17,7 +17,7 @@ public interface WarehouseService {
 
     void addProduct(AddProductToWarehouseRequest request);
 
-    AddressDto getShoppingCart();
+    AddressDto getAddress();
 
     void shipped(ShippedToDeliveryRequest request);
 

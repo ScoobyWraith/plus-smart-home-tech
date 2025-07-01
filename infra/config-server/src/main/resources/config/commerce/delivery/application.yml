@@ -43,3 +43,6 @@ api:
 
 server:
   port: 0
+
+delivery:
+  basePrice: 5

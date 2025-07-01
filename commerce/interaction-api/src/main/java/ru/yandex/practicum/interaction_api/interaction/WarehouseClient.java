@@ -18,7 +18,7 @@ import java.util.Map;
 @FeignClient(name = "warehouse")
 public interface WarehouseClient {
     @PutMapping("/api/v1/warehouse")
-    void createProduct(NewProductInWarehouseRequest request);
+    void createProduct(NewProductInWarehouseRequest request) throws FeignException;
 
     @PostMapping("/api/v1/warehouse/check")
     BookedProductsDto checkQuantity(ShoppingCartDto shoppingCartDto) throws FeignException;
@@ -33,8 +33,8 @@ public interface WarehouseClient {
     BookedProductsDto assembly(AssemblyProductsForOrderRequest request) throws FeignException;
 
     @PostMapping("/api/v1/warehouse/add")
-    void addProduct(AddProductToWarehouseRequest request);
+    void addProduct(AddProductToWarehouseRequest request) throws FeignException;
 
     @GetMapping("/api/v1/warehouse/address")
-    AddressDto getShoppingCart();
+    AddressDto getAddress()  throws FeignException;
 }

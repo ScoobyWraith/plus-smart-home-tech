@@ -21,7 +21,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @NoArgsConstructor
 @AllArgsConstructor
-public class Warehouse {
+public class ProductInWarehouse {
     @Id
     @Column(name = "product_id")
     String productId;

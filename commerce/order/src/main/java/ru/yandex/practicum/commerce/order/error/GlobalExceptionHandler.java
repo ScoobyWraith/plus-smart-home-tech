@@ -6,12 +6,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.yandex.practicum.interaction_api.exception.BaseHttpException;
+import ru.yandex.practicum.interaction_api.exception.NoOrderFoundException;
 import ru.yandex.practicum.interaction_api.exception.NotAuthorizedUserException;
 import ru.yandex.practicum.interaction_api.exception.ProductInShoppingCartLowQuantityInWarehouse;
 
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    @ExceptionHandler(NoOrderFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public BaseHttpException handleNoOrderFoundException(final NoOrderFoundException e) {
+        log.warn("400 {}", e.getMessage(), e);
+        return e;
+    }
+
     @ExceptionHandler(ProductInShoppingCartLowQuantityInWarehouse.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public BaseHttpException handleProductInShoppingCartLowQuantityInWarehouse(final ProductInShoppingCartLowQuantityInWarehouse e) {
